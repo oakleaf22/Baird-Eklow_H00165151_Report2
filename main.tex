@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage[document]{ragged2e}
+\usepackage{titlesec}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{nameref}
+\usepackage{fancyvrb}
+\usepackage{amsmath}
+\usepackage{float}
+%\usepackage{biblatex}
+\usepackage{tocloft}
+\usepackage[doublespacing]{setspace}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{afterpage,lscape}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage[parfill]{parskip}
+\usepackage[export]{adjustbox}
+\usepackage[hyphens]{url}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage[toc,page]{appendix}
+\usepackage{subcaption}
+\usepackage{dirtytalk}
+\usepackage{pdfpages}
+\usepackage{array}
+
+
+\usepackage{natbib}
+\bibliographystyle{agsm}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\captionsetup[table]{skip=10pt}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+%\addbibresource{Bibliography.bib}
+\renewcommand\bibname{References}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% \makeatletter
+% \renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+%   {3.25ex \@plus1ex \@minus.2ex}%
+%   {-1em}%
+%   {\normalfont\normalsize\bfseries}}
+% \renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+%   {3.25ex \@plus1ex \@minus .2ex}%
+%   {-1em}%
+%   {\normalfont\normalsize\bfseries}}
+% \def\toclevel@subsubsubsection{4}
+% \def\toclevel@paragraph{5}
+% \def\toclevel@paragraph{6}
+% \def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+% \def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+% \def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+% \makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{4}
+
+% \titleformat{\paragraph}
+% {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+% \titlespacing*{\paragraph}
+% {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\usepackage[utf8]{inputenc}
+
+\linespread{1.1}
+%\graphicspath{{images/}}
+
+\renewcommand\thesection{\arabic{section}}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\setcounter{secnumdepth}{4}
+
+% \titlespacing{\paragraph}{0pt}{1.5ex plus 1ex minus .2ex}{-5pt plus 2pt minus 2pt}
+
+% \titleformat{\paragraph}
+% {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing*{\section}
+{0pt}{1.5ex plus 1ex minus .2ex}{-5pt plus 2pt minus 2pt}
+\titlespacing*{\subsection}
+{0pt}{1.5ex plus 1ex minus .2ex}{-5pt plus 2pt minus 2pt}
+\setlength{\parskip}{1em}
+\titlespacing*{\subsubsection}
+{0pt}{1.5ex plus 1ex minus .2ex}{-5pt plus 2pt minus 2pt}
+\setlength{\parskip}{1em}
+
+%\titleformat{\paragraph} {\itshape\normalsize}{\theparagraph}{1em}{1}
+\titlespacing{\paragraph}{0pt}{1.5ex plus 1ex minus .2ex}{-5pt plus 2pt minus 2pt}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \begin{document}
+
+
+
+\begin{titlepage}
+    \includegraphics[width=6cm, left]{figures/HWlogo2016.jpg} % also works with logo.pdf
+    \centering
+    \vfill
+    {\bfseries\LARGE
+        \textbf{\underline{Course code and title}}
+    }
+    
+    {\bfseries\LARGE
+        \textbf{Assignment title}
+    }
+  
+    
+    \vfill
+    {\Large
+        Stephanie Ekl\"{o}w (H00165151)\\MEng Architectural Engineering
+        
+        School of Energy, Geoscience, Infrastructure and Society\\Heriot-Watt University, Edinburgh
+        
+        Wednesday March 16, 2017
+    }
+\end{titlepage}
+
+
+
+  \pagenumbering{gobble}
+  \newpage
+  \large\tableofcontents
+  
+  
+
+
+      \newpage
+      \listoffigures
+      \newpage
+      \listoftables
+      \newpage
+      \listofmyequations
+
+  
+  \newpage
+  \pagenumbering{arabic}
+
+  \input{parts/01_intro}
+  \newpage
+
+  \bibliography{references}
+  \newpage
+
+  \input{parts/appendices}
+  
+\end{document}
