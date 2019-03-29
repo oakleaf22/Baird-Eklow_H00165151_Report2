@@ -1,21 +1,82 @@
 \section{Question 1}
 
-\textit{\textbf{AIM: Calculate the energy storage capacity Scotland would need to satisfy all its electricity needs with renewable generation and provide a stable grid.}}
 
-According to Scottish Government's quote in assignment description, Scotland's typical electricity demand is 15-16 GW.
-\hl{Is this the current typical electricity demand?}
 
-As of Q3 2018, the total installed capacity of renewable energy in Scotland is $10,475 MW$ (see Figure \ref{fig:installed_capacity}), i.e. almost $10.5 GW$ which is two-thirds of Scotland's electricity demand.
-\hl{QUESTION: Is all of this RE electricity or is some heat?}
-Scotland will thus need to install another $5-6 GW$ of renewable energy capacity to meet the demand.
+Before we can calculate the energy storage capacity that Scotland requires to satisfy its electricity demand at all times with renewable generation, we need to:
+\begin{itemize}
+	\item Determine Scotland's current typical electricity demand
+	\item Upscale the current generation mix for renewable technologies
+	\item Calculate the necessary energy storage power capacity
+\end{itemize}
 
-\hl{QUESTION: Energy capacity = energy storage? Does storage change between renewable technologies?}
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{figures/installed-capacity-by-technology-q3-2018.jpg}
-	\rule{\textwidth}{0.5pt} % use line???
-	\caption{The installed capacity of renewable energy in Scotland as of Q3 2018 \citep{ScottishRenewables}.}
-	\label{fig:installed_capacity}
-\end{figure}
 
+%%% SUBSECTION %%%
+
+\subsection{Typical electricity demand}
+
+The Department for Business, Energy {\&} Industrial Strategy (BEIS) of the UK Government publishes electricity generation and supply statistics on a quarterly basis \citep{BEIS2018ElecUK}.
+Table~\ref{tbl:elec_demand} presents the most up-to-date figures for Scotland.
+England is a regular importer of electricity from Scotland \citep{BEIS2018EnergyTrends}.
+Northern Ireland usually imports electricity from Scotland but was a net exporter to Scotland for the first time in 2016, which continued in 2017 \citep{BEIS2018EnergyTrends}.
+Scotland's annual demand is calculated by subtracting the exported electricity from and adding the imported electricity to its total generation.
+This gives Scotland a current typical electricity demand of 35,810~GWh.
+
+\input{tables/Elec_demand}
+
+
+
+%%% SUBSECTION %%%
+
+\subsection{Upscale of renewable generation mix}
+
+Tables~\ref{tbl:installed_cap}, \ref{tbl:RE_gen} and \ref{tbl:days} respectively present the installed capacity of renewable technologies in Scotland, the renewable generation in Scotland and the number of days per year from 2012 or 2013 to 2017.
+Equation~\ref{eq:CF} represents the annual capacity factor (CF), i.e. the ratio of annual energy yield over the maximum possible annual energy yield.
+The capacity factors for Scotland's renewable technologies were calculated per year by inputting the data in the aforementioned tables in Equation~\ref{eq:CF}.
+Equation~\ref{eq:CF_example} demonstrates this with the calculation of the capacity factor for onshore wind energy in 2013.
+The capacity factors and their averages are presented in Table~\ref{tbl:CFs}.
+
+\input{tables/Installed_capacity}
+
+\input{tables/RE_generation}
+
+\input{tables/Days_in_a_year}
+
+\input{tables/CFs}
+
+	\begin{equation}\label{eq:CF}
+		\begin{split}
+			CF & = \frac{annual\;energy\;yield\;[MWh]}{maximum\;possible\;energy\;yield\;[MWh]} \\
+			& \\
+			& = \frac{generation\;[MWh]}{average\;capacity\;[MW] \times hours\;in\;the\;year\;[h]}
+		\end{split}
+	\end{equation}
+
+	\begin{equation}\label{eq:CF_example}
+		\begin{split}
+			CF & = \frac{2013\;generation\;[GWh] \times 1000}{\frac{2012\;capacity\;+\;2013\;capacity}{2}\;[MW] \times 24\;[h] \times days\;in\;2013} \\
+			& \\
+			& = \frac{10,563\;[GWh] \times 1000}{\frac{3,765\;+\;4,589}{2}\;[MW] \times 24\;[h] \times 365} = \frac{10,563,000\;[MWh]}{4,177\;[MW] \times 8,760\;[h]} \\
+			& \\
+			& = 29\%
+		\end{split}
+	\end{equation}
+
+\textbf{Calculate typical generation based on 2017 installed capacity and average CFs.}
+\textbf{Upscale installed capacity so generation meets demand of 35,810~GWh.}
+
+\input{tables/Upscale}
+
+
+
+%%% SUBSECTION %%%
+
+\subsection{Energy storage power capacity}
+
+\ldots
+
+
+
+%%% SUBSECTION %%%
+
+\subsection{Energy storage capacity OR demand}

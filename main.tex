@@ -31,18 +31,25 @@
 \usepackage{dirtytalk}
 \usepackage{pdfpages}
 \usepackage{array}
+\usepackage{tabu}
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Stephanie Baird-Ekl\"{o}w}
 \rhead{Page \thepage}
+\cfoot{SECTION \rightmark}
 
 \usepackage{soul}
 \newcommand{\hlc}[2][pink]{ {\sethlcolor{#1} \hl{#2}}}
 
-\usepackage{natbib}
-\bibliographystyle{agsm}
+\usepackage[numbers,square,comma,sort&compress]{natbib}
+\bibliographystyle{plain}
 \usepackage[nottoc,numbib]{tocbibind}
 
 \captionsetup[table]{skip=10pt}
@@ -191,8 +198,8 @@
   \newpage
 
   \bibliography{references}
-  \newpage
+  %\newpage
 
-  \input{sections/appendices}
+  %\input{sections/appendices}
   
 \end{document}
