@@ -6,7 +6,7 @@ Before we can calculate the energy storage capacity that Scotland requires to sa
 \begin{itemize}
 	\item Determine Scotland's current typical electricity demand
 	\item Upscale the current generation mix for renewable technologies
-	\item Calculate the necessary energy storage power capacity
+	\item Calculate the necessary power storage capacity
 \end{itemize}
 
 
@@ -54,7 +54,7 @@ The capacity factors and their averages are presented in Table~\ref{tbl:CFs}.
 
 	\begin{equation}\label{eq:CF_example}
 		\begin{split}
-			CF & = \frac{2013\;generation\;[GWh] \times 1000}{\frac{2012\;capacity\;+\;2013\;capacity}{2}\;[MW] \times 24\;[h] \times days\;in\;2013} \\
+			CF_{onshore\;wind,\;2013} & = \frac{2013\;generation\;[GWh] \times 1000}{\frac{2012\;capacity\;+\;2013\;capacity}{2}\;[MW] \times 24\;[h] \times days\;in\;2013} \\
 			& \\
 			& = \frac{10,563\;[GWh] \times 1000}{\frac{3,765\;+\;4,589}{2}\;[MW] \times 24\;[h] \times 365} = \frac{10,563,000\;[MWh]}{4,177\;[MW] \times 8,760\;[h]} \\
 			& \\
@@ -62,8 +62,10 @@ The capacity factors and their averages are presented in Table~\ref{tbl:CFs}.
 		\end{split}
 	\end{equation}
 
-\textbf{Calculate typical generation based on 2017 installed capacity and average CFs.}
-\textbf{Upscale installed capacity so generation meets demand of 35,810~GWh.}
+Using the average capacity factors and the cumulative installed capacity of renewable technologies from 2017, we can calculate the typical RE generation in Scotland (see Table~\ref{tbl:upscale}).
+This is calculated by re-arranging Equation~\ref{eq:CF} for generation.
+It was found that, currently, Scotland's RE generation typically meets 73.4\% of its electricity demand of 35,810~GWh.
+By upscaling the 2017 cumulative installed capacity by 36.4\%, the subsequent RE generation can meet 100\% of Scotland's demand.
 
 \input{tables/Upscale}
 
@@ -71,9 +73,41 @@ The capacity factors and their averages are presented in Table~\ref{tbl:CFs}.
 
 %%% SUBSECTION %%%
 
-\subsection{Energy storage power capacity}
+\subsection{Power storage capacity}
 
-\ldots
+\textbf{intro}
+
+
+
+\subsubsection{Peak power demand}
+
+Since we were unable to find Scotland's peak power demand, we deduced it from the overall UK demand.
+The UK's peak power demand in 2017 was 52.279~GW \citep{BEIS2018PeakDemand}.
+And in 2017, Scotland's population accounted for 8.2\% of the total UK population \citep{OfficeforNationalStatistics2018}.
+Therefore, we can assume that Scotland's peak power demand is 8.2\% of the UK demand, i.e. 4.29~GW.
+
+However, this demand does not account for losses in transmission etc.
+To find the losses, we subtracted Scotland's total electricity consumption in 2017 of 30,590~GWh \citep{BEIS2018ElecUK} from Scotland's annual electricity demand of 35,810~GWh.
+The losses, 5,220~GWh, represent 15\% of the annual energy demand.
+Therefore, we scaled up Scotland's peak power demand by 15\% to account for losses; this results in 4.91~GW.
+
+
+\subsubsection{Base load}
+
+For the base load we include all dispatchable loads that can be turned on and off at any given time.
+This will consist of 116~MW of landfill gas, 7~MW of sewage sludge digestion, and 295~MW of other biomass (see Table~\ref{tbl:installed_cap}).
+Large scale hydro can also be considered dispatchable, but its load will depend on precipitation which varies largely by season.
+Figure~\ref{fig:hydro_distribution} shows that hydro in the UK has an average capacity factor of 50\% in the winter, which we can assume coincides with Scotland's peak electricity demand due to the increased need for lighting and heating.
+(However, it should be noted that there might be slight discrepancies between hydro's capacity factors in the UK and Scotland.)
+Therefore, we consider the base load to also consist of 50\% of the installed capacity for large scale hydro, i.e. 50\% of 1,341~MW which equals 670.5~MW (see Table~\ref{tbl:installed_cap}).
+In total, the base load amounts to 1.48~GW.
+
+\input{figures/Hydro_distribution}
+
+
+\subsubsection{Necessary power storage capacity}
+
+Scotland's necessary power storage capacity can then simply be calculated as the difference between its peak power demand (including losses) and base load, i.e. $4.91~GW - 1.48~GW = 3.43~GW$.
 
 
 
