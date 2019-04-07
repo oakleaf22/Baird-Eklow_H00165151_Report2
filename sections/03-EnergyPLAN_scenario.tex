@@ -22,7 +22,15 @@ Therefore, if it is possible to limit the PHS power rating to 1.43~GW (to meet t
 \subsubsection{EnergyPLAN inputs}
 
 EnergyPLAN's UK 2020 model \citep{EnergyPLAN_UK2020} was used as the baseline model for the hypothesis.
-The baseline data was amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), so that there was only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and so that there was no transmission line capacity.
+The baseline data was amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), so that there was only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and so that there was no transmission line capacity (see Figure~\ref{fig:B02-base_load}).
+
+\textbf{Figure~\ref{fig:B02-base_load} shows the base load inputs.}
+The upscaled large scale hydro capacity of 1,829~MW was entered for Dammed Hydro Power.
+The default Dammed Hydro Power efficiency was left untouched and, instead, the water supply to the Dammed Hydro was amended until the estimated annual production equalled the upscaled large scale hydro generation calculated in Question~1, i.e. 6.12~TWh/ year (see Table~\ref{tbl:upscale}).
+
+``Condensing PP2" consists of the central power plants that generate electricity only.
+PP2 was allocated 570~MW, i.e. the upscaled capacity of landfill gas, sewage sludge digestion and other biomass (see Section~\ref{sec:base_load}).
+The electrical efficiency of landfill gas, sewage sludge digestion and other biomass were respectively found as ...
 
 \input{figures/B02_base_load}
 
