@@ -2,11 +2,11 @@
 
 
 
-In order to calculate the energy storage capacity that Scotland requires to satisfy its electricity demand at all times with renewable generation, the following needs to be done beforehand:
+In order to calculate the electricity storage capacity that Scotland requires to satisfy its electricity demand at all times with renewable generation, the following needs to be done beforehand:
 \begin{itemize}
 	\item Determine Scotland's current typical electricity demand
 	\item Upscale the current generation mix for renewable technologies
-	\item Calculate the necessary power rating for the energy storage
+	\item Calculate the necessary power rating for the electricity storage
 \end{itemize}
 
 
@@ -32,7 +32,7 @@ This gives Scotland a current typical electricity demand of 35,810~GWh.
 
 Tables~\ref{tbl:installed_cap}, \ref{tbl:RE_gen} and \ref{tbl:days} respectively present the installed capacity of renewable technologies in Scotland, the renewable energy (RE) generation in Scotland and the number of days per year from 2012 or 2013 to 2017.
 Equation~\ref{eq:CF} represents the annual capacity factor (CF), i.e. the ratio of annual energy yield over the maximum possible annual energy yield.
-The capacity factors for Scotland's renewable technologies were calculated per year by inputting the data in the aforementioned tables in Equation~\ref{eq:CF}.
+The capacity factors for Scotland's renewable technologies were calculated per year by inputting the data from the aforementioned tables into Equation~\ref{eq:CF}.
 Equation~\ref{eq:CF_example} demonstrates this with the calculation of the capacity factor for onshore wind energy in 2013.
 The capacity factors and their averages are presented in Table~\ref{tbl:CFs}.
 
@@ -75,8 +75,6 @@ By upscaling the 2017 cumulative installed capacity by 36.4\%, the subsequent RE
 
 \subsection{Power rating}
 
-\hl{intro}
-
 
 
 \subsubsection{Peak power demand}
@@ -87,16 +85,16 @@ Therefore, it can be assumed that Scotland's peak power demand is 8.2\% of the U
 
 However, this demand does not account for losses in transmission etc.
 The losses were found by subtracting Scotland's total electricity consumption in 2017 of 30,590~GWh \citep{BEIS2018ElecUK} from Scotland's annual electricity demand of 35,810~GWh.
-The losses, 5,220~GWh, represent 15\% of the annual energy demand.
+The losses, 5,220~GWh, represent 15\% of the annual electricity demand.
 Therefore, Scotland's peak power demand was scaled up by 15\% to account for losses; this results in 4.91~GW.
 
 
 
 \subsubsection{Base load}
 
-For the base load includes all dispatchable loads that can be turned on and off at any given time.
+The base load includes all dispatchable loads that can be turned on and off at any given time.
 This consists of 116~MW of landfill gas, 7~MW of sewage sludge digestion, and 295~MW of other biomass (see Table~\ref{tbl:installed_cap}).
-Large scale hydro can also be considered dispatchable, but its load will depend on precipitation which varies largely by season.
+Large scale hydro can also be considered dispatchable, but its load will partly depend on precipitation which varies largely by season.
 Figure~\ref{fig:hydro_distribution} shows that hydro in the UK has an average capacity factor of 50\% in the winter; this is assumed to coincide with Scotland's peak electricity demand due to the increased need for lighting and heating\footnote{However, it should be noted that there might be discrepancies between hydro's capacity factors in the UK and Scotland.}.
 Therefore, the base load also consists of 50\% of the installed capacity for large scale hydro, i.e. 50\% of 1,341~MW which equals 670.5~MW (see Table~\ref{tbl:installed_cap}).
 In total, the base load amounts to 1.48~GW.
@@ -106,44 +104,62 @@ In total, the base load amounts to 1.48~GW.
 
 \subsubsection{Necessary power rating}
 
-The necessary energy storage power rating to meet Scotland's peak demand can then simply be calculated as the difference between its peak power demand (including losses) and base load, i.e. $4.91~GW - 1.48~GW = 3.43~GW$.
+The necessary electricity storage power rating to meet Scotland's peak demand can then simply be calculated as the difference between its peak power demand (including losses) and base load, i.e. $4.91~GW - 1.48~GW = 3.43~GW$.
 
 
 
 %%% SUBSECTION %%%
 
-\subsection{Necessary energy storage capacity}
+\subsection{Necessary electricity storage capacity}
 
-In a study done by Siemens, it was found that to have all electricity in Europe supplied by renewables, ``both reinforcement of interconnection lines and EES [electrical energy storage] capacity of between 2\% and 8\% of the annual total demand is necessary" \citep[p.~69]{IEC2011}.
-Considering the worst case scenario for Scotland, it is assumed 8\% of its demand is needed in annual storage, i.e. 2,865~GWh.
-However, this annual storage demand risks being too low since Scotland is independent from interconnects in this case study.
+\subsubsection{Storage period}
 
-The following is an alternative way to calculate Scotland's required energy storage capacity, inspired by Mearns \citep{Mearns2018}.
-Figure~\ref{fig:winter_demand} shows that Scotland's mean winter demand is 2.91~GW.
-Assuming the base load meets 1.48~GW of this, Scotland's energy storage is required to meet the remaining demand, i.e. 1.43~GW.
-Scotland's energy storage capacity (in GWh) depends on the time period energy storage is considered necessary for.
-Considering that wind is Scotland's largest renewable source of energy (see Table~\ref{tbl:RE_gen}), and the most variable, the time period can be based on typical periods of low wind generation.
+Scotland's electricity storage capacity (in GWh) depends on the time period considered necessary for storage.
+Considering that wind is Scotland's largest renewable source of electricity (see Table~\ref{tbl:RE_gen}), and the most variable, the time period can be based on typical periods of low wind generation.
 In the UK's wind output for 2017 \citep{GridWatchnd}, the longest time period of consistently low wind generation was found to be three days (the criterion for low output was arbitrarily chosen to be 10\% or less of the maximum output)\footnote{This data has just been used for indication. It should be noted that this data regards the whole of the UK as opposed to just Scotland, and that it covers just a year as opposed to a ten year period, which is generally considered to be representative of the local wind climate \citep[p.~15]{Boehme2006}.}.
-Hence, Scotland should have at least three days' worth of energy storage capacity, i.e. $1.43~GW \times 24~hours \times 3~days = 103~GWh$.
+Hence, Scotland should have at least three days' worth of electricity storage capacity.
 However, one may want to design for more storage in case of longer periods of low wind generation.
-Storage capacity options of between three and seven days are presented in Figure~\ref{fig:storage_options}.
-The annual energy storage demand calculated using this same method, i.e. multiplied by 365~days, is 12,527~GWh which represents 35\% of Scotland's annual demand.
-This is about four times greater than the 8\% capacity calculated earlier.
-It is possible that in the Siemens case study, interconnects are expected to supply between 27\% and 33\% of the annual energy demand alongside the energy storage of 2\%--8\%.
+Storage capacity options of between three and seven days will be presented in this section.
 
-\textbf{\hl{UNCOMMENT WINTER DEMAND FIGURE}}
+\textbf{\hl{WINTER DEMAND FIGURE TAKES LONG TO BUILD - UNCOMMENT BEFORE SUBMISSION}}
 
 %\input{figures/winter_demand}
 
-\input{figures/storage_options}
 
-\hl{power to energy ratio/ marathon vs sprinter battery modes?}
 
-\hl{long storage durations: ``Owing to the small evaporation
-and penetration, the storage period of PHS can be varied
-from typically hours to days and even years."}
-Suitable storage duration: hours - months.
- \citep{Chen2009}
+\subsubsection{Siemens' method}
+
+In a study done by Siemens, it was found that to have all electricity in Europe supplied by renewables, ``both reinforcement of interconnection lines and EES [electrical energy storage] capacity of between 2\% and 8\% of the annual total demand is necessary" \citep[p.~69]{IEC2011}.
+Considering the worst case scenario for Scotland, it is assumed 8\% of its demand is needed in annual storage, i.e. 2,865~GWh.
+Dividing this by 365~days of the year gives a daily storage demand of around 8~GWh.
+Storage capacity options of between three and seven days are presented are in Figure~\ref{fig:storage_options_compared}.
+Considering that Scotland is independent from interconnects in this case study, this storage demand risks being too low.
+
+
+
+\subsubsection{Mearns' method}
+
+The following is an alternative way to calculate Scotland's required electricity storage capacity, inspired by Mearns \citep{Mearns2018}.
+Figure~\ref{fig:winter_demand} shows that Scotland's mean winter demand is 2.91~GW.
+Assuming the base load meets 1.48~GW of this, Scotland's electricity storage is required to meet the remaining demand, i.e. 1.43~GW.
+
+Scotland should have at least three days' worth of electricity storage capacity, i.e. $1.43~GW \times 24~hours \times 3~days = 103~GWh$.
+Storage capacity options of between three and seven days are presented in Figure~\ref{fig:storage_options_compared}.
+
+
+
+\subsubsection{Methods compared}
+
+The annual electricity storage demand calculated using Mearns' method, i.e. multiplied by 365~days, is 12,527~GWh which represents 35\% of Scotland's annual demand.
+This is about four times greater than the 8\% capacity calculated earlier.
+It is possible that in the Siemens case study, interconnects are expected to supply between 27\% and 33\% of the annual electricity demand alongside the electricity storage of 2\%--8\%.
+Overall, it seems more reasonable to use the electricity storage capacity figures calculated using Mearns' method.
+
+\input{figures/storage_options_compared}
+
+%\hl{power to energy ratio/ marathon vs sprinter battery modes?}
+
+
 
 \begin{comment}
 \textbf{Power-to-energy ratio (P/E ratio)}
