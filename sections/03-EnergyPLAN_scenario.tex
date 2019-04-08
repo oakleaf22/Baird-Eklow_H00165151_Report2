@@ -12,7 +12,7 @@ It is theoretically possible for the Scottish electricity grid to be independent
 \end{itemize}
 
 EnergyPLAN was used to test this hypothesis.
-To get a storage period of at least three days, 240~GWh was selected as the PHS storage capacity for a couple reasons.
+To get a storage period of at least three days, 240~GWh was selected as the PHS capacity for a couple reasons.
 Firstly, at a power rating of 3.43~GWh (to meet the peak power demand), a PHS scheme of 240~GWh storage capacity can operate continuously for about three days before the reservoirs are depleted.
 Secondly, it is assumed the grid would not need to meet Scotland's peak power demand continuously for three days.
 Therefore, if it is possible to limit the PHS power rating to 1.43~GW (to meet the mean winter demand), 240~GWh would yield a storage period of one week.
@@ -57,7 +57,7 @@ If the pump is prioritised, excess electricity gets stored while other power pla
 % which work on a daily cycle, charging at night and discharging in the day; these were either unable or had no need to use the pump and turbine simultaneously.
 However, operating the pump and turbine together enables the PHS scheme to store excess VRE while also producing grid-stabilising power.
 This can be achieved with a double penstock set-up, as shown in Figure~\ref{fig:penstock_systems}, or ``by installing multiple single penstock system [PHS] facilities on the same energy system i.e. one can charge while the other is discharging at the same time" \citep[p.~39]{Connolly2015}.
-Because the PHS storage capacity does not replenish as quickly with a double penstock system, it also allows for lower storage capacities than single penstock systems \citep{Connolly2015}.
+Because the PHS capacity does not replenish as quickly with a double penstock system, it also allows for lower storage capacities than single penstock systems \citep{Connolly2015}.
 
 \input{figures/B02_base_load}
 
@@ -71,10 +71,10 @@ Because the PHS storage capacity does not replenish as quickly with a double pen
 
 
 
-\subsubsection{Hypothesis evaluation}
+\subsubsection{Initial EnergyPLAN run}
 
 The initial run of the hypothetical scenario in EnergyPLAN triggered the ``(1) Critical Excess", ``(2) Grid Stab. Problem" and ``(3) PP/Import problem" warnings.
-The exports and imports are displayed in Figure~\ref{fig:B15_balance}.
+There were frequent exports of up to 8~MW and imports of up to 4~GW, which is similar to Scotland's peak demand of 4.29~GW (see Figure~\ref{fig:B15_balance}).
 It was also noticed that the programme deemed the specified biomass fuel supply insufficient, so it added 0.96~TWh/year of fuel, 75\% of which was fossil.
 
 The grid stability load fluctuated between 61\% and 320\% in the simulated year.
@@ -83,6 +83,10 @@ The grid was not stable because at least one time in the simulated year, the gri
 This means that more than 70\% of the electricity was VRE during these times.
 When the stabilisation load is greater than 100\%, it means that more grid stabilisers had to be used to meet the demand, probably because there wasn't enough VRE generation.
 Moreover, the fact that the annual average of the stabilisation load was 159\% indicates that there was not enough VRE generation.
+
+
+
+\subsubsection{EnergyPLAN re-run with CEEP and MGSPS amendments}
 
 The scenario was re-run with a MGSPS of 15\% and the first Critical Electricity Excess Production (CEEP) regulation, i.e. reducing RES1 and RES2.
 The latter measure essentially curtails the onshore and offshore wind production when it exceeds the demand.
@@ -94,11 +98,57 @@ Despite a biomass supply of 11.529~TWh/year being specified, only 10.78~TWh/year
 
 \input{figures/balance_15_14}
 
-Flexible demand...
 
-The ``(3) PP/Import problem" warning could not go away without increasing the base load and/ or VRE capacity which, for the sake of the hypothesis, had to stay fixed.
-Hence, the hypothesis was proven to be false, mainly because the upscaled RE generation mix could often not meet the demand.
 
+\newpage
+\subsubsection{EnergyPLAN re-run with flexible demand}
+
+\input{figures/B12_elec_dem}
+
+Together with the CEEP and MGSPS amendments, the hypothesis was also tested with a flexible electricity demand.
+This means that the grid is allowed to do some load shifting (a form of demand side management) by concentrating the demand when there is a lot of VRE generation.
+In order for the grid to have such control, there must be a way for it to communicate when it load shifts to the consumers \citep{Lund2017}.
+This could be made possible with the use of smart meters.
+The hypothesis with flexible demand was tested in three scenarios.
+\begin{itemize}
+	\item Firstly, 10\% of the annual electricity demand was given flexibility to be freely distributed over a 24-hour period according to the actual electricity balance (see Figure~\ref{fig:B12_elec_dem}).
+	\item Secondly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a one-week period according to the actual electricity balance.
+	This scenario would only be ``relevant to consumers with extra battery capacity and for hydrogen-operated vehicles" \citep[p.~107]{Lund2017}.
+\end{itemize}
+
+\begin{itemize}
+	\item Thirdly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a four-week period according to the actual electricity balance.
+	For this scenario, it should be noted that technologies to make this work are not currently available \citep{Lund2017}, but it is a theoretical possibility.
+\end{itemize}
+
+Figure~\ref{fig:B14} shows a three-day period in February of the simulated hypothetical scenario with CEEP and MGSPS amendments and no flexible demand.
+It can be seen that the PHS capacity (yellow in  middle chart) was depleted at about hour 1,025.
+This is due to a 15-hour period of no wind generation (green in middle chart).
+Subsequently, imports of up to 4~MW were needed (third chart).
+
+Figures~\ref{fig:B12} to \ref{fig:B17} show the same simulated hypothetical scenario, but with the increasing amounts of flexible demand.
+In Figure~\ref{fig:B12}, the 10\% flexible demand over one day can be seen in the green area in the first chart.
+The load shifting made the demand less peaky or, in other words, more flat.
+This resulted in the PHS capacity getting depleted slightly later (at about hour 1,075) and in less electricity getting imported (up to 3.5~MW).
+This phenomenon amplifies itself with increasing flexibility, continuously improving the balance between supply and demand.
+In Figure~\ref{fig:B17}, the PHS capacity was able to cope with the entire windless period of about 35~hours, hence no imports were required.
+
+\input{figures/flex_dem}
+
+Despite the illustrated three-day period having no imports in the scenario with flexible demand over one month, imports were still needed throughout the year (see Figure~\ref{fig:B17-balance}).
+It should however be noted that these were of much smaller magnitude (up to about 2~MW) compared to the scenario without flexible demand (see Figure~\ref{fig:B15_B14_balance}).
+% unstable grid explanation
+
+
+
+\subsubsection{Hypothesis evaluation}
+
+\input{figures/B17-balance}
+
+The ``(3) PP/Import problem" warning did not go away in all the variations of the hypothesis that were tested.
+It suggests that the warning would not go away without the base load and/ or VRE capacity being increased which, for the sake of the hypothesis, had to stay fixed.
+The consistent imports and PHS capacity unable to cope with windless periods of at least 15~hours suggest that the capacity of the upscaled RE generation mix is insufficient and/~or there is not enough EES.
+Hence, the hypothesis was proven to be false.
 
 
 
