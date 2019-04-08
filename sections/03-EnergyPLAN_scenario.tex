@@ -21,30 +21,83 @@ Therefore, if it is possible to limit the PHS power rating to 1.43~GW (to meet t
 
 \subsubsection{EnergyPLAN inputs}
 
-EnergyPLAN's UK 2020 model \citep{EnergyPLAN_UK2020} was used as the baseline model for the hypothesis.
-The baseline data was amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), so that there was only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and so that there was no transmission line capacity (see Figure~\ref{fig:B02-base_load}).
+EnergyPLAN's UK 2020 model \citep{EnergyPLAN_UK2020} was used as the baseline for the hypothesis.
+It contained distribution files with hourly data for a year that described typical weather and energy generation patterns etc.
+Some of default data inputs were amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and no transmission line capacity (see Figure~\ref{fig:B02-base_load}).
+Additionally, the minimum grid stabilisation production share (MGSPS) was set to 30\%, as recommended by the EnergyPLAN manual \citep{Lund2017}.
 
-\textbf{Figure~\ref{fig:B02-base_load} shows the base load inputs.}
+Figure~\ref{fig:B02-base_load} shows the \textbf{base load} inputs.
 The upscaled large scale hydro capacity of 1,829~MW was entered for Dammed Hydro Power.
 The default Dammed Hydro Power efficiency was left untouched and, instead, the water supply to the Dammed Hydro was amended until the estimated annual production equalled the upscaled large scale hydro generation calculated in Question~1, i.e. 6.12~TWh/ year (see Table~\ref{tbl:upscale}).
 
 ``Condensing PP2" consists of the central power plants that generate electricity only.
 PP2 was allocated 570~MW, i.e. the upscaled capacity of landfill gas, sewage sludge digestion and other biomass (see Section~\ref{sec:base_load}).
-The electrical efficiency of landfill gas, sewage sludge digestion and other biomass were respectively found as ...
+The electrical efficiency of landfill gas, sewage sludge digestion and biomass energy generation were respectively found as 42\% \citep{ClarkeEnergy}, 15\% \citep{Mills2015} and 25\% \citep{BERC2009}.
+The average, 27\%, was entered as the efficiency of PP2.
+
+Figure~\ref{fig:B01-BM} shows the \textbf{distribution of resources that fuel the power plants} in EnergyPLAN.
+For the purposes of this exercise, PP2 was the only plant that was used, and biomass represented landfill gas, sewage sludge digestion and other biomass.
+The annual amount of biomass supply was calculated by dividing the upscaled generation of the individual RE generators by their respective efficiencies, and then by summing the quotients (see Table~\ref{tbl:BM_supply_calc}).
+The sum, 11.529~TWh, was entered into EnergyPLAN.
+
+\input{tables/BM_supply_calc}
+
+The installed capacities of the upscaled \textbf{variable renewable electricity (VRE) mix}, which were calculated in Table~\ref{tbl:upscale}, were entered into EnergyPLAN as shown in Figure~\ref{fig:B02-VRE}.
+The correction factors were tweaked so that the estimated post correction production (in TWh/year) equalled the upscaled generation calculated in Table~\ref{tbl:upscale}.
+
+The \textbf{PHS parameters}, e.g. the 240~GWh storage capacity, were entered as shown in Figure~\ref{fig:B02-PHS}.
+The pump and turbine efficiencies at a PHS facility are typically the same.
+Inserting a pump and turbine efficiency of 86.61\% gives the desired round-trip efficiency of $0.8661 \times 0.8661 = 0.75$ \citep{Connolly2015}.
+
+Moreover, the turbine and pump were allowed for simultaneous operation to better integrate fluctuating RE generation.
+This is unlike traditional PHS facilities (described in Section~\ref{sec:PHS}).
+Traditional facilities must either prioritise the pump or turbine.
+If the pump is prioritised, excess electricity gets stored while other power plants are left to supply grid-stabilising power.
+%Such a system often requires more fuel
+% which work on a daily cycle, charging at night and discharging in the day; these were either unable or had no need to use the pump and turbine simultaneously.
+However, operating the pump and turbine together enables the PHS scheme to store excess VRE while also producing grid-stabilising power.
+This can be achieved with a double penstock set-up, as shown in Figure~\ref{fig:penstock_systems}, or ``by installing multiple single penstock system [PHS] facilities on the same energy system i.e. one can charge while the other is discharging at the same time" \citep[p.~39]{Connolly2015}.
+Because the PHS storage capacity does not replenish as quickly with a double penstock system, it also allows for lower storage capacities than single penstock systems \citep{Connolly2015}.
 
 \input{figures/B02_base_load}
 
-\input{figures/B02_BM}
+\input{figures/B01_BM}
 
 \input{figures/B02_VRE}
 
 \input{figures/B02_PHS}
 
+\input{figures/penstock_systems}
 
 
 
+\subsubsection{Hypothesis evaluation}
 
+The initial run of the hypothetical scenario in EnergyPLAN triggered the ``(1) Critical Excess", ``(2) Grid Stab. Problem" and ``(3) PP/Import problem" warnings.
+The exports and imports are displayed in Figure~\ref{fig:B15_balance}.
+It was also noticed that the programme deemed the specified biomass fuel supply insufficient, so it added 0.96~TWh/year of fuel, 75\% of which was fossil.
 
+The grid stability load fluctuated between 61\% and 320\% in the simulated year.
+The grid is not stable when the grid stability load is below 100\% at any given time of the year.
+The grid was not stable because at least one time in the simulated year, the grid stabilisation technologies (PP2, dammed hydro and PHS) generated less than the required amount specified by the MGSPS, i.e. 30\%.
+This means that more than 70\% of the electricity was VRE during these times.
+When the stabilisation load is greater than 100\%, it means that more grid stabilisers had to be used to meet the demand, probably because there wasn't enough VRE generation.
+Moreover, the fact that the annual average of the stabilisation load was 159\% indicates that there was not enough VRE generation.
+
+The scenario was re-run with a MGSPS of 15\% and the first Critical Electricity Excess Production (CEEP) regulation, i.e. reducing RES1 and RES2.
+The latter measure essentially curtails the onshore and offshore wind production when it exceeds the demand.
+Together, these two measures got rid of the ``(1) Critical Excess" and ``(2) Grid Stab. Problem" warnings.
+However the ``(3) PP/Import problem" still remained.
+The lack of exports and remainder of imports, though seemingly less frequent, is seen in Figure~\ref{fig:B14_balance}.
+It was also noticed that, in the amended scenario, less fuel was needed for PP2.
+Despite a biomass supply of 11.529~TWh/year being specified, only 10.78~TWh/year of biomass was used/ needed.
+
+\input{figures/balance_15_14}
+
+Flexible demand...
+
+The ``(3) PP/Import problem" warning could not go away without increasing the base load and/ or VRE capacity which, for the sake of the hypothesis, had to stay fixed.
+Hence, the hypothesis was proven to be false, mainly because the upscaled RE generation mix could often not meet the demand.
 
 
 
@@ -52,22 +105,3 @@ The electrical efficiency of landfill gas, sewage sludge digestion and other bio
 \subsection{Scenario optimisation}
 
 
-\newpage
-\textbf{FIDE, p. 39}
-
-"However, if energy storage devices are
-designed especially to integrate fluctuating renewable energy, there may be additional benefits when using
-PHES that can charge and discharge at the same time. This can be achieved in a single PHES facility by installing
-two penstocks, as displayed in Figure 21, or also by installing multiple single penstock system PHES facilities on
-the same energy system i.e. one can charge while the other is discharging at the same time. By using a double
-penstock system, the PHES introduces more flexibility onto the energy system and hence it can aid the
-integration of more renewable energy. As a result, this operating strategy is also possible in EnergyPLAN by
-selecting YES when asked “Allow for simultaneous operation of turbine and pump”"
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{figures/Simultaneous_charge_discharge.png}
-\end{figure}
-
-"Therefore, double penstock system can achieve higher fluctuating renewable energy
-penetrations at lower storage capacities than a single penstock system."
