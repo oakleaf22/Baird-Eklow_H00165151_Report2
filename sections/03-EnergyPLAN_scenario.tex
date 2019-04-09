@@ -13,7 +13,7 @@ It is theoretically possible for the Scottish electricity grid to be independent
 
 EnergyPLAN was used to test this hypothesis.
 To get a storage period of at least three days, 240~GWh was selected as the PHS capacity for a couple reasons.
-Firstly, at a power rating of 3.43~GWh (to meet the peak power demand), a PHS scheme of 240~GWh storage capacity can operate continuously for about three days before the reservoirs are depleted.
+Firstly, at a power rating of 3.43~GW (to meet the peak power demand), a PHS scheme of 240~GWh storage capacity can operate continuously for about three days before the reservoirs are depleted.
 Secondly, it is assumed the grid would not need to meet Scotland's peak power demand continuously for three days.
 Therefore, if it is possible to limit the PHS power rating to 1.43~GW (to meet the mean winter demand), 240~GWh would yield a storage period of one week.
 
@@ -23,29 +23,33 @@ Therefore, if it is possible to limit the PHS power rating to 1.43~GW (to meet t
 
 EnergyPLAN's UK 2020 model \citep{EnergyPLAN_UK2020} was used as the baseline for the hypothesis.
 It contained distribution files with hourly data for a year that described typical weather and energy generation patterns etc.
-Some of default data inputs were amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and no transmission line capacity (see Figure~\ref{fig:B02-base_load}).
-Additionally, the minimum grid stabilisation production share (MGSPS) was set to 30\%, as recommended by the EnergyPLAN manual \citep{Lund2017}.
+Some of the default data inputs were amended so that there was only an electricity demand of 35.81~TWh/ year (and no heating, cooling or transport demand etc.), only RE generation (so no heat supply from district heating, combined heat and power (CHP) or heat pumps etc.) and no transmission line capacity (see Figure~\ref{fig:B02-base_load}).
+Additionally, the minimum grid stabilisation production share (MGSPS) was set to 30\%, as recommended by the EnergyPLAN manual \citep{Lund2017}, and the PHS costs were entered as shown in Table~\ref{tbl:EP_PHS_costs_partial}.
 
-Figure~\ref{fig:B02-base_load} shows the \textbf{base load} inputs.
+Figure~\ref{fig:B02-base_load} shows the \underline{base load} inputs.
 The upscaled large scale hydro capacity of 1,829~MW was entered for Dammed Hydro Power.
 The default Dammed Hydro Power efficiency was left untouched and, instead, the water supply to the Dammed Hydro was amended until the estimated annual production equalled the upscaled large scale hydro generation calculated in Question~1, i.e. 6.12~TWh/ year (see Table~\ref{tbl:upscale}).
+
+\input{tables/EP_PHS_costs}
 
 ``Condensing PP2" consists of the central power plants that generate electricity only.
 PP2 was allocated 570~MW, i.e. the upscaled capacity of landfill gas, sewage sludge digestion and other biomass (see Section~\ref{sec:base_load}).
 The electrical efficiency of landfill gas, sewage sludge digestion and biomass energy generation were respectively found as 42\% \citep{ClarkeEnergy}, 15\% \citep{Mills2015} and 25\% \citep{BERC2009}.
 The average, 27\%, was entered as the efficiency of PP2.
 
-Figure~\ref{fig:B01-BM} shows the \textbf{distribution of resources that fuel the power plants} in EnergyPLAN.
+Figure~\ref{fig:B01-BM} shows the \underline{distribution of resources that fuel the power plants} in EnergyPLAN.
 For the purposes of this exercise, PP2 was the only plant that was used, and biomass represented landfill gas, sewage sludge digestion and other biomass.
 The annual amount of biomass supply was calculated by dividing the upscaled generation of the individual RE generators by their respective efficiencies, and then by summing the quotients (see Table~\ref{tbl:BM_supply_calc}).
 The sum, 11.529~TWh, was entered into EnergyPLAN.
 
 \input{tables/BM_supply_calc}
 
-The installed capacities of the upscaled \textbf{variable renewable electricity (VRE) mix}, which were calculated in Table~\ref{tbl:upscale}, were entered into EnergyPLAN as shown in Figure~\ref{fig:B02-VRE}.
+The installed capacities of the upscaled \underline{variable renewable electricity (VRE) mix}, which were calculated in Table~\ref{tbl:upscale}, were entered into EnergyPLAN as shown in Figure~\ref{fig:B02-VRE}.
 The correction factors were tweaked so that the estimated post correction production (in TWh/year) equalled the upscaled generation calculated in Table~\ref{tbl:upscale}.
 
-The \textbf{PHS parameters}, e.g. the 240~GWh storage capacity, were entered as shown in Figure~\ref{fig:B02-PHS}.
+The \underline{PHS parameters}
+%, e.g. the 240~GWh storage capacity, 
+were entered as shown in Figure~\ref{fig:B02-PHS}.
 The pump and turbine efficiencies at a PHS facility are typically the same.
 Inserting a pump and turbine efficiency of 86.61\% gives the desired round-trip efficiency of $0.8661 \times 0.8661 = 0.75$ \citep{Connolly2015}.
 
@@ -106,27 +110,28 @@ Despite a biomass supply of 11.529~TWh/year being specified, only 10.78~TWh/year
 \input{figures/B12_elec_dem}
 
 Together with the CEEP and MGSPS amendments, the hypothesis was also tested with a flexible electricity demand.
-This means that the grid is allowed to do some load shifting (a form of demand side management) by concentrating the demand when there is a lot of VRE generation.
-In order for the grid to have such control, there must be a way for it to communicate when it load shifts to the consumers \citep{Lund2017}.
-This could be made possible with the use of smart meters.
+This means that the grid is allowed to do some load shifting (a form of demand side management (DSM)) by concentrating the demand when there is a lot of VRE generation.
+In order for the grid to have such control, there must be a way for it to communicate when it shifts loads to the consumers \citep{Lund2017}.
+This could be made possible with the use of smart meters \citep{Connolly2016}.
 The hypothesis with flexible demand was tested in three scenarios.
 \begin{itemize}
-	\item Firstly, 10\% of the annual electricity demand was given flexibility to be freely distributed over a 24-hour period according to the actual electricity balance (see Figure~\ref{fig:B12_elec_dem}).
-	\item Secondly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a one-week period according to the actual electricity balance.
+	\item Firstly, 10\% of the annual electricity demand was given flexibility to be freely distributed over a 24-hour period (see Figure~\ref{fig:B12_elec_dem}).
+	\item Secondly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a one-week period.
 	This scenario would only be ``relevant to consumers with extra battery capacity and for hydrogen-operated vehicles" \citep[p.~107]{Lund2017}.
 \end{itemize}
 
 \begin{itemize}
-	\item Thirdly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a four-week period according to the actual electricity balance.
+	\item Thirdly, an additional 10\% of the annual electricity demand was given flexibility to be freely distributed over a four-week period.
 	For this scenario, it should be noted that technologies to make this work are not currently available \citep{Lund2017}, but it is a theoretical possibility.
 \end{itemize}
 
-Figure~\ref{fig:B14} shows a three-day period in February of the simulated hypothetical scenario with CEEP and MGSPS amendments and no flexible demand.
+Figure~\ref{fig:B14} shows a three-day period in February of the simulated hypothetical scenario with the CEEP and MGSPS amendments and no flexible demand.
 It can be seen that the PHS capacity (yellow in  middle chart) was depleted at about hour 1,025.
 This is due to a 15-hour period of no wind generation (green in middle chart).
 Subsequently, imports of up to 4~MW were needed (third chart).
 
 Figures~\ref{fig:B12} to \ref{fig:B17} show the same simulated hypothetical scenario, but with the increasing amounts of flexible demand.
+(Go to Appendix~\ref{app:flex_dem} to see these charts in larger sizes.)
 In Figure~\ref{fig:B12}, the 10\% flexible demand over one day can be seen in the green area in the first chart.
 The load shifting made the demand less peaky or, in other words, more flat.
 This resulted in the PHS capacity getting depleted slightly later (at about hour 1,075) and in less electricity getting imported (up to 3.5~MW).
@@ -137,7 +142,8 @@ In Figure~\ref{fig:B17}, the PHS capacity was able to cope with the entire windl
 
 Despite the illustrated three-day period having no imports in the scenario with flexible demand over one month, imports were still needed throughout the year (see Figure~\ref{fig:B17-balance}).
 It should however be noted that these were of much smaller magnitude (up to about 2~MW) compared to the scenario without flexible demand (see Figure~\ref{fig:B15_B14_balance}).
-% unstable grid explanation
+Additionally, this scenario presented the ``(2) Grid Stab. Problem" warning; sometimes, the grid stabilisers generated less than the MGSPS of 15\%.
+The warning was simply removed by changing the MGSPS to 13\%.
 
 
 
@@ -147,11 +153,46 @@ It should however be noted that these were of much smaller magnitude (up to abou
 
 The ``(3) PP/Import problem" warning did not go away in all the variations of the hypothesis that were tested.
 It suggests that the warning would not go away without the base load and/ or VRE capacity being increased which, for the sake of the hypothesis, had to stay fixed.
-The consistent imports and PHS capacity unable to cope with windless periods of at least 15~hours suggest that the capacity of the upscaled RE generation mix is insufficient and/~or there is not enough EES.
+The consistent imports and PHS capacity unable to cope with windless periods of at least 15~hours suggest that the upscaled RE generation mix capacity and/~or the EES were insufficient.
 Hence, the hypothesis was proven to be false.
 
 
 
 \subsection{Scenario optimisation}
 
+Due to the reduction in overall demand and improvement between supply and demand in the scenario with 10\% flexible demand over a day, a week and a month, this scenario was selected for further optimisation.
 
+The simulation results were examined more closely to identify the reason behind the imports.
+It seemed the pumps were only used to store excess electricity in the PHS when there was more than 4~GW of wind generation.
+In times of less wind (especially in the summer), less excess electricity was being stored in PHS, hence the reservoirs were not getting replenished.
+As a result, in times of need (i.e. during extended windless periods), the PHS reservoirs depleted themselves very quickly.
+Since there was not enough base load capacity or EES to meet the demand, electricity had to be imported.
+
+The scenario described above was used as the baseline in an iteration of separate attempts to get rid of the imports.
+Firstly, the PHS capacity was increased to 5~GW/~480~GWh; this is much larger than Scotland's PHS potential (see Table~\ref{tbl:potential_phs}).
+This resulted in very little changes in the annual electricity balance compared to that in Figure~\ref{fig:B17-balance}.
+Secondly, the onshore wind capacity was increased to 13,079~MW; this is 3~GW greater than the capacity in the hypothesis.
+Again, there was not much of a difference in the electricity balance.
+The consistency of imports in the first two attempts can be explained by the lack of wind; just like before, there was not enough wind to generate excess electricity to be sent to PHS.
+
+Since the majority of imports seemed to occur during the windless yet sunny summer, the third attempt increased the photovoltaic (PV) capacity to 5~GW.
+Despite this being a ludicrous upscale of 1,448\% of Scotland's current PV capacity, the electricity balance did not change much from that in Figure~\ref{fig:B17-balance}.
+In fact, it worsened the supply/~demand balance slightly by needing to export up to 412~MW in March.
+
+After these attempts failed to remove the imports, a fourth attempt was made by increasing the base load capacity.
+Imports were removed and all warnings avoided by increasing the PP2 capacity to 2,090~MW (almost four times the hypothetical capacity) and the biomass input to 28.2~TWh/year.
+The total annual cost of this scenario is about £2.5~billion, which includes the investment and O\&M costs for PHS and the installed capacity of renewable technologies.
+
+In order to reduce pressure on the biomass resource and its associated greenhouse gas emissions, an attempt was made to compensate some of the increased PP2 capacity with large scale hydro.
+Dammed hydro was increased to 3,078~MW with an annual production of 10.3~TWh (this required an annual water supply of 11.7~TWh).
+To minimise the use of biomass and simultaneously avoid all warnings, the PP2 capacity was reduced to 1,712~MW.
+The total annual cost of this scenario is about £2.4~billion.
+
+The Scottish grid successfully achieved 100\% RE generation, stability and independence in the last two attempts.
+In both, the PHS capacity remains the same as in the hypothesis, i.e. at 3,427~MW/~240~GWh.
+However, in the scenario with more large scale hydro, there was significantly less VRE generation and less use of the PHS; this scenario was poorer in integrating VRE.
+Hence, the scenario with more biomass was said to be optimised, because it made better use of the VRE generation.
+The total costs for the PHS in this scenario are displayed in Table~\ref{tbl:EP_PHS_total_costs}.
+It should be re-emphasised that this scenario is based on 10\% flexible demand over a day, a week and a month, the latter of which can only work with technologies that are not currently available.
+
+\input{tables/EP_PHS_total_costs}
